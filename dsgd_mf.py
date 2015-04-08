@@ -13,9 +13,11 @@ import math
 
 class VectorAccumulatorParam(AccumulatorParam):
     def zero(self, initialValue):
-        return numpy.array(initialValue.size)
+        return numpy.array(0)
 
     def addInPlace(self, v1, v2):
+        print "my value: " + str(self)
+        print "adding " + str(v1) +  " to " + str(v2)
         return numpy.add(v1, v2)
 
 
@@ -59,6 +61,9 @@ def run_sgd(w, h, num_iterations, beta_value, lambda_value, num_workers, user_id
     
     wAccum = sc.accumulator(w, VectorAccumulatorParam())
     hAccum = sc.accumulator(h, VectorAccumulatorParam())
+    print "original w: " + str(wAccum.value)
+    print "original h: " + str(hAccum.value)
+    l2 = False
     while iteration < num_iterations:
         def update_sgd(data):
             """
@@ -70,29 +75,46 @@ def run_sgd(w, h, num_iterations, beta_value, lambda_value, num_workers, user_id
             factor_w = numpy.array([[0 for col in range(len(w[0]))]
                             for row in range(len(w))])
             for item in data:
-                iteration_estimated = (iteration * num_workers/len(h)) + num_local_updates
+                iteration_estimated = (iteration * num_workers/len(h)*len(h)*len(w)) + num_local_updates
                 epsilon = math.pow((100 + iteration_estimated),(-1*beta_value))
+                print "epsilon: " + str(epsilon)
                 movie_id, user_id = item[0]
                 values = item[1]
                 movie_rating = 0
                 for element in values:
                     for val in element:
                         movie_rating = val
+                print "movie rating: " + str(movie_rating)
+
                 movie_column = movie_ids[movie_id]
                 user_row = user_ids[user_id]
-
+                print "movie id: " + str(movie_id)
+                print "user id: " + str(user_id)
+                print "movie column: " + str(movie_column)
+                print "user_row: " + str(user_row)
+                
+                l2_w = 0
+                l2_h = 0
+                if l2:
+                    l2_w = 2 * lambda_value / num_ratings_per_user[user_id] * numpy.transpose(w[user_row, :])
+                    l2_h = 2 * lambda_value / num_ratings_per_movie[movie_id] * h[:, movie_column]
+                print "l2_w: " + str(l2_w)
+                print "l2_h: " + str(l2_h)                
                 #calculate amount that should be added
                 #to final factor matrices
-                factor_w[user_row, :] -= epsilon*(2 * numpy.dot((movie_rating - numpy.dot(w[user_row, :],h[:, movie_column])), h[:, movie_column]) +
-                                   2 * lambda_value / num_ratings_per_user[user_id] * numpy.transpose(w[user_row, :]))
-                factor_h[:, movie_column] -= epsilon*(2 * numpy.dot((numpy.dot(movie_rating - w[user_row, :], h[:, movie_column])), w[user_row, :]) + 
-                                      2 * lambda_value / num_ratings_per_movie[movie_id] * h[:, movie_column])
+                factor_w[user_row, :] -= epsilon*(-2 * (movie_rating - w[user_row, :]*h[:, movie_column])* h[:, movie_column] +
+                                                  l2_w)
+                factor_h[:, movie_column] -= epsilon*(-2 * (movie_rating - w[user_row, :]*h[:, movie_column])* numpy.transpose(w[user_row, :]) + 
+                                                  l2_h)
+                print "factor_w: " + str(factor_w)
+                print "factor_h: " + str(factor_h)
 
                 num_local_updates+=1
                 #numpy.savetxt("w_iter_"+str(iteration), w)
                 #numpy.savetxt("h_iter_"+str(iteration), h)
             wAccum.add(factor_w)
             hAccum.add(factor_h)
+            
         def get_movie_user_pairs(element):
             """
             Filter that returns True if element
@@ -115,7 +137,10 @@ def run_sgd(w, h, num_iterations, beta_value, lambda_value, num_workers, user_id
         partitioned_data.foreachPartition(update_sgd)
         w = wAccum.value
         h = hAccum.value
+        print "accumulated w: " + str(wAccum.value)
+        print "accumulated h: " + str(hAccum.value)
         iteration += 1
+    return h, w
 
 def reorder_data_from_dir(partition):
     """
@@ -199,10 +224,11 @@ def run_all(num_factors, num_workers, num_iterations, beta_value, lambda_value, 
                             for row in range(num_factors)])
     factor_w = numpy.array([[random.randint(0, 10) for col in range(num_factors)]
                             for row in range(num_users)])
-    run_sgd(factor_w, factor_h, num_iterations, beta_value, lambda_value, num_workers, user_ids, movie_ids, tuples, num_ratings_per_user, num_ratings_per_movie, sc)
+    factor_h, factor_w = run_sgd(factor_w, factor_h, num_iterations, beta_value, lambda_value, num_workers, user_ids, movie_ids, tuples, num_ratings_per_user, num_ratings_per_movie, sc)
     outfile_w = file(output_W_filepath, "w")
     write_output(factor_w, outfile_w)
     outfile_h = file(output_H_filepath,"w")
+    print numpy.dot(factor_w, factor_h)
     write_output(factor_h, outfile_h)
 
 run_all(int(sys.argv[1]), int(sys.argv[2]), int(sys.argv[3]),
