@@ -1,0 +1,6 @@
+---------------------------------------------------
+Autograding ...
+---------------------------------------------------
+The stderr will be logged to file  autolab_exp/eval_acc.log
+command you are executing  /home/mtydykov/Downloads/spark/spark-1.3.0/bin/spark-submit dsgd_mf.py 20 3 30 0.9 0.1 autolab_train.csv autolab_exp/w.csv autolab_exp/h.csv
+Program failed, please check the log for details

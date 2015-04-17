@@ -1,0 +1,5 @@
+spark/bin/spark-submit dsgd_mf.py 20 4 30 0.5 0.1 /hw7/nf_subsample.csv w.csv h.csv exp4/nzslerrors_exp4_beta05> exp4/experiment4_beta05_log 2>&1
+spark/bin/spark-submit dsgd_mf.py 20 4 30 0.6 0.1 /hw7/nf_subsample.csv w.csv h.csv exp4/nzslerrors_exp4_beta06> exp4/experiment4_beta06_log 2>&1
+spark/bin/spark-submit dsgd_mf.py 20 4 30 0.7 0.1 /hw7/nf_subsample.csv w.csv h.csv exp4/nzslerrors_exp4_beta07> exp4/experiment4_beta07_log 2>&1
+spark/bin/spark-submit dsgd_mf.py 20 4 30 0.8 0.1 /hw7/nf_subsample.csv w.csv h.csv exp4/nzslerrors_exp4_beta08> exp4/experiment4_beta08_log 2>&1
+spark/bin/spark-submit dsgd_mf.py 20 4 30 0.9 0.1 /hw7/nf_subsample.csv w.csv h.csv exp4/nzslerrors_exp4_beta09> exp4/experiment4_beta09_log 2>&1

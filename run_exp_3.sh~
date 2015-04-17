@@ -1,0 +1,10 @@
+spark/bin/spark-submit dsgd_mf.py 10 4 30 0.6 0.1 /hw7/nf_subsample.csv w.csv h.csv exp3/nzslerrors_exp3_10factors> exp3/experiment3_10factors_log
+spark/bin/spark-submit dsgd_mf.py 20 4 30 0.6 0.1 /hw7/nf_subsample.csv w.csv h.csv exp3/nzslerrors_exp3_20factors> exp3/experiment3_20factors_log
+spark/bin/spark-submit dsgd_mf.py 30 4 30 0.6 0.1 /hw7/nf_subsample.csv w.csv h.csv exp3/nzslerrors_exp3_30factors> exp3/experiment3_30factors_log
+spark/bin/spark-submit dsgd_mf.py 40 4 30 0.6 0.1 /hw7/nf_subsample.csv w.csv h.csv exp3/nzslerrors_exp3_40factors> exp3/experiment3_40factors_log
+spark/bin/spark-submit dsgd_mf.py 50 4 30 0.6 0.1 /hw7/nf_subsample.csv w.csv h.csv exp3/nzslerrors_exp3_50factors> exp3/experiment3_50factors_log
+spark/bin/spark-submit dsgd_mf.py 60 4 30 0.6 0.1 /hw7/nf_subsample.csv w.csv h.csv exp3/nzslerrors_exp3_60factors> exp3/experiment3_60factors_log
+spark/bin/spark-submit dsgd_mf.py 70 4 30 0.6 0.1 /hw7/nf_subsample.csv w.csv h.csv exp3/nzslerrors_exp3_70factors> exp3/experiment3_70factors_log
+spark/bin/spark-submit dsgd_mf.py 80 4 30 0.6 0.1 /hw7/nf_subsample.csv w.csv h.csv exp3/nzslerrors_exp3_80factors> exp3/experiment3_80factors_log
+spark/bin/spark-submit dsgd_mf.py 90 4 30 0.6 0.1 /hw7/nf_subsample.csv w.csv h.csv exp3/nzslerrors_exp3_90factors> exp3/experiment3_90factors_log
+spark/bin/spark-submit dsgd_mf.py 100 4 30 0.6 0.1 /hw7/nf_subsample.csv w.csv h.csv exp3/nzslerrors_exp3_100factors> exp3/experiment3_100factors_log

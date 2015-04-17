@@ -1,0 +1,19 @@
+15/04/16 17:35:23 WARN Utils: Your hostname, maya-MacBookPro-Invalid-entry-length-DMI-table-is-broken-Stop resolves to a loopback address: 127.0.1.1; using 128.237.234.43 instead (on interface wlan0)
+15/04/16 17:35:23 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+15/04/16 17:35:25 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+15/04/16 17:35:25 WARN LoadSnappy: Snappy native library not loaded
+[Stage 0:>                                                          (0 + 2) / 2]                                                                                Traceback (most recent call last):
+  File "/home/mtydykov/workspace/10605HW7/dsgd_mf.py", line 384, in <module>
+    float(sys.argv[4]), float(sys.argv[5]), sys.argv[6], sys.argv[7], sys.argv[8], sys.argv[9])
+  File "/home/mtydykov/workspace/10605HW7/dsgd_mf.py", line 375, in run_all
+    run_netflix(textfiles, num_iterations, beta_value, lambda_value, num_factors, num_workers, output_H_filepath, output_W_filepath, sc, errorfile)
+  File "/home/mtydykov/workspace/10605HW7/dsgd_mf.py", line 332, in run_netflix
+    setup_and_run(tuples, num_movies, num_users, num_iterations, beta_value, lambda_value, num_factors, num_workers, output_H_filepath, output_W_filepath, sc, True, errorfile)
+  File "/home/mtydykov/workspace/10605HW7/dsgd_mf.py", line 359, in setup_and_run
+    factor_h, factor_w, total_squared_error_for_iteration = run_sgd(w_rdd, h_rdd, num_iterations, beta_value, lambda_value, num_workers, tuples, num_ratings_per_user, num_ratings_per_movie, num_users, num_movies, get_error, sc, errorfile)
+  File "/home/mtydykov/workspace/10605HW7/dsgd_mf.py", line 168, in run_sgd
+    errorfile_out = open(errorfile,"w")
+IOError: [Errno 2] No such file or directory: 'nexp2/zslerrors_exp2_3workers'
+Command exited with non-zero status 1
+12.90user 0.62system 0:15.26elapsed 88%CPU (0avgtext+0avgdata 335456maxresident)k
+0inputs+2312outputs (0major+141208minor)pagefaults 0swaps

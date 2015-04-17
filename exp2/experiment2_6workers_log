@@ -1,0 +1,14 @@
+15/04/16 17:59:20 WARN Utils: Your hostname, maya-MacBookPro-Invalid-entry-length-DMI-table-is-broken-Stop resolves to a loopback address: 127.0.1.1; using 128.237.234.43 instead (on interface wlan0)
+15/04/16 17:59:20 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+15/04/16 17:59:21 WARN AppClient$ClientActor: Could not connect to akka.tcp://sparkMaster@ip-172-31-35-43.us-west-2.compute.internal:7077: akka.remote.InvalidAssociation: Invalid address: akka.tcp://sparkMaster@ip-172-31-35-43.us-west-2.compute.internal:7077
+15/04/16 17:59:21 WARN Remoting: Tried to associate with unreachable remote address [akka.tcp://sparkMaster@ip-172-31-35-43.us-west-2.compute.internal:7077]. Address is now gated for 5000 ms, all messages to this address will be delivered to dead letters. Reason: ip-172-31-35-43.us-west-2.compute.internal: unknown error
+15/04/16 17:59:41 WARN AppClient$ClientActor: Could not connect to akka.tcp://sparkMaster@ip-172-31-35-43.us-west-2.compute.internal:7077: akka.remote.InvalidAssociation: Invalid address: akka.tcp://sparkMaster@ip-172-31-35-43.us-west-2.compute.internal:7077
+15/04/16 17:59:41 WARN Remoting: Tried to associate with unreachable remote address [akka.tcp://sparkMaster@ip-172-31-35-43.us-west-2.compute.internal:7077]. Address is now gated for 5000 ms, all messages to this address will be delivered to dead letters. Reason: ip-172-31-35-43.us-west-2.compute.internal: unknown error
+15/04/16 18:00:01 WARN AppClient$ClientActor: Could not connect to akka.tcp://sparkMaster@ip-172-31-35-43.us-west-2.compute.internal:7077: akka.remote.InvalidAssociation: Invalid address: akka.tcp://sparkMaster@ip-172-31-35-43.us-west-2.compute.internal:7077
+15/04/16 18:00:01 WARN Remoting: Tried to associate with unreachable remote address [akka.tcp://sparkMaster@ip-172-31-35-43.us-west-2.compute.internal:7077]. Address is now gated for 5000 ms, all messages to this address will be delivered to dead letters. Reason: ip-172-31-35-43.us-west-2.compute.internal: unknown error
+15/04/16 18:00:21 ERROR SparkDeploySchedulerBackend: Application has been killed. Reason: All masters are unresponsive! Giving up.
+15/04/16 18:00:21 WARN SparkDeploySchedulerBackend: Application ID is not initialized yet.
+15/04/16 18:00:21 ERROR TaskSchedulerImpl: Exiting due to error from cluster scheduler: All masters are unresponsive! Giving up.
+Command exited with non-zero status 1
+5.35user 0.49system 1:05.37elapsed 8%CPU (0avgtext+0avgdata 233092maxresident)k
+2000inputs+480outputs (7major+67404minor)pagefaults 0swaps
